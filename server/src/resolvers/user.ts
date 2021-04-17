@@ -201,4 +201,15 @@ export class UserResolver {
 
     }
 
+    @Mutation(() => Boolean)
+    async deleteAccount(
+        @Ctx() { req }: MyContext
+    ): Promise<boolean> {
+        if (!req.session.userId) {
+            return true
+        }
+
+        await User.delete({ id: req.session.userId })
+        return true
+    }
 }
