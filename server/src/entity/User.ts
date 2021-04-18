@@ -16,11 +16,7 @@ export class User extends BaseEntity {
 
     @Field()
     @Column({ unique: true })
-    email!: string
-
-    @Field()
-    @Column({ unique: true })
-    phone!: string
+    email: string;
 
     @Column()
     password!: string;
@@ -33,8 +29,10 @@ export class User extends BaseEntity {
     @Column({ default: false })
     newAccount!: Boolean
 
-    @OneToMany(() => Post, post => post.creator)
+    @Field(() => [Post])
+    @OneToMany(() => Post, post => post.creator, { cascade: true })
     posts: Post[]
+
 
     @Field(() => String)
     @CreateDateColumn()

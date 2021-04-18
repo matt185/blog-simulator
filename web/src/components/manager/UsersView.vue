@@ -15,7 +15,7 @@
         <tr>
           <td>{{ row.item.id }}</td>
           <td>{{ row.item.username }}</td>
-          <td>{{ row.item.phone }}</td>
+          <td>{{ row.item.email }}</td>
           <td>{{ row.item.role }}</td>
           <td>{{ row.item.createdAt }}</td>
           <td>{{ row.item.updatedAt }}</td>
@@ -61,7 +61,7 @@ export default {
         },
         { text: "Username", value: "username" },
 
-        { text: "PhoneNumber", value: "phone" },
+        { text: "Email", value: "email" },
         { text: "role", value: "role" },
         { text: "createdAt", value: "createdAt" },
         { text: "updatedAt", value: "updatedAt" },

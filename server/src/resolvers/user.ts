@@ -67,7 +67,7 @@ export class UserResolver {
     @Mutation(() => UserResponse)
     async register(
         @Arg("input", () => UsernamePasswordInput) input: UsernamePasswordInput,
-        // @Ctx() { req }: MyContext
+        @Ctx() { req }: MyContext
     ): Promise<UserResponse> {
 
         const errors = validateRegister(input)
@@ -78,7 +78,7 @@ export class UserResolver {
         const hashedPsw = await argon2.hash(input.password)
 
         try {
-            await User.create({ username: input.username, email: input.email, password: hashedPsw, role: input.role, phone: input.phone, newAccount: true }).save()
+            await User.create({ username: input.username, email: input.email, password: hashedPsw, role: input.role, newAccount: true }).save()
         } catch (err) {
             if (err.code === '23505' || err.detail.includes("already exists")) {
                 return {
@@ -90,6 +90,7 @@ export class UserResolver {
             }
         }
         let user = await User.findOne({ username: input.username })
+        req.session.userId = user!.id
         return { user: user }
     }
 
