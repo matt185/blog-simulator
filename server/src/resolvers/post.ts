@@ -2,6 +2,8 @@ import { isAuth } from "../middleware/isAuth";
 import { MyContext } from "src/types";
 import { Arg, Ctx, Field, InputType, Int, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
 import { Post } from "./../entity/Post"
+// import { User } from "../entity/User";
+
 
 @InputType()
 class PostInput {
@@ -11,11 +13,11 @@ class PostInput {
     text: string
 }
 
-@Resolver()
+@Resolver(Post)
 export class PostResolver {
     @Query(() => [Post])
-    async post(): Promise<Post[] | undefined> {
-        return Post.find()
+    async posts(): Promise<Post[] | undefined> {
+        return Post.find({ relations: ["creator"] })
     }
 
     @Query(() => Post)

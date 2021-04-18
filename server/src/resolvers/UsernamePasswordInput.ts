@@ -11,7 +11,5 @@ export class UsernamePasswordInput {
     @Field()
     password: string;
     @Field()
-    phone: string;
-    @Field()
     role: string;
 }

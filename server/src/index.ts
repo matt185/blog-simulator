@@ -11,6 +11,7 @@ import Redis from 'ioredis';
 import session from 'express-session';
 import connectRedis from "connect-redis";
 import { COOKIE_NAME, __prod__, REDIS_SECRET } from "./utils/constants";
+import { PostResolver } from "./resolvers/post";
 // import { sendEmail } from "./utils/sendEmail";
 
 (async () => {
@@ -46,7 +47,7 @@ import { COOKIE_NAME, __prod__, REDIS_SECRET } from "./utils/constants";
     )
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
-            resolvers: [UserResolver],
+            resolvers: [UserResolver, PostResolver],
             validate: false
         }),
         context: ({ req, res }): MyContext => ({ req, res, redis })

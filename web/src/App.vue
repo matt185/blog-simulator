@@ -22,16 +22,6 @@
             v-model="group"
             active-class="grey lighten-3--text text--accent-4"
           >
-            <!-- <v-list-item v-for="item in menuList" :key="item.name">
-              <router-link class="d-flex flex-row" :to="item.link">
-                <v-list-item-icon>
-                  <v-icon @click="logout(item.name)">{{ item.icon }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title @click="logout(item.name)">{{
-                  item.name
-                }}</v-list-item-title>
-              </router-link>
-            </v-list-item> -->
             <v-list-item>
               <router-link class="d-flex flex-row" to="/">
                 <v-list-item-icon>
